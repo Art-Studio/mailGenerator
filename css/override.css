@@ -1,0 +1,70 @@
+/* CSS Document */
+
+.ui-tooltip{
+	z-index: 950;
+}
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor{
+	padding: 2px 8px 2px 4px;
+}
+
+.font-picker,
+.font-picker .fp-variants{
+	font-family: Arial, Helvetica, sans-serif !important;
+}
+.fp-favorite,
+.font-picker .fp-variants .fp-pill.italic,
+.font-picker .fp-pill:last-child,
+.font-picker .fp-results li > small,
+.font-picker .fp-divider{
+	display: none;
+}
+.font-picker .fp-sample{
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+.font-picker.fp-select{
+	vertical-align: middle;
+}
+.font-picker .fp-modal{
+	padding: 4px 8px 10px;
+	width: 430px;
+	top: 4%;
+}
+.fp-row > *{
+	margin: 4px;
+}
+.font-picker .fp-filter{
+	text-align: center;
+}
+.font-picker .fp-pill{
+	border-radius: 4px !important;
+    margin: 4px 2px;
+    line-height: 18px;
+	border: 1px solid #c5c5c5;
+}
+.font-picker .fp-pill.checked,
+.font-picker .fp-pill.active{
+	background-color: #007fff;
+	color: #ffffff;
+}
+.font-picker .fp-results li.fp-hover{
+	background: #ededed;
+}
+.font-picker .fp-results li.fp-active{
+	background-color: #007fff;
+}
+.font-picker .fp-btns{
+	bottom: 8px;
+    top: auto;
+}
+.font-picker .fp-variants{
+	max-width: 300px;
+	overflow: hidden;
+}
+.font-picker .fp-variants .fp-pill{
+	padding: 2px 4px;
+    line-height: 14px;
+	float: left;
+	display: block;
+	margin: 4px 2px 0px;
+}

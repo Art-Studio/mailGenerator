@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		
+		<link rel="icon" type="image/png" href="img/favicon.png">
+		
+		<link rel="stylesheet" href="css/base.css?v3">
+		<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+		<link rel="stylesheet" href="css/fontpicker.css">
+		<link rel="stylesheet" href="css/override.css?v3">
+		
+		<!-- libraries -->
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script type="text/javascript" src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="js/fontpicker.js?v3"></script>
+		
+		<!-- functions -->
+		<script type="text/javascript" src="js/config.js?v3"></script>
+		<script type="text/javascript" src="js/utils.js?v3"></script>
+		<script type="text/javascript" src="js/controls.js?v3"></script>
+		<script type="text/javascript" src="js/sortable.js?v3"></script>
+		<script type="text/javascript" src="js/functions.js?v3"></script>
+		<script type="text/javascript" src="js/editor.js?v3"></script>
+		<script type="text/javascript" src="js/action.js?v3"></script>
+		<script type="text/javascript" src="js/init.js?v3"></script>
+		
+		<title>e-Mail Generator</title>
+		
+		<!-- Added dynamically -->
+	</head>
+
+	<body>
+		<div id="mainBox">
+			<div id="previewBox" class="init">
+				<table cellpadding="0" align="center">
+					<tbody></tbody>
+				</table>
+				<button id="import"><i class="icon">file_upload</i> Import</button>
+			</div>
+			<!--TOOLBOX-->
+			<div id="toolsBox">
+				<!--TABS-->
+				<ul class="tabList">
+					<li><a href="#items" title="Insert"><i class="icon">insert_page_break</i> Ins</a></li>
+					<li><a href="#properties" title="Properties"><i class="icon">checklist</i> Prop</a></li>
+					<li><a href="#source"><i class="icon">code</i> Code</a></li>
+					<li><a href="#output"><i class="icon">output</i> Output</a></li>
+					<li><a href="#help" title="Help"><i class="icon">help</i></a></li>
+				</ul>
+				<!--ITEMS-->
+				<div id="items"></div>
+				<!--CONTROLS-->
+				<div id="properties">
+					
+					<div id="controls">
+						
+						<h3>General<i class="icon">settings</i></h3>
+						<div id="general">
+							<div><label><i>Snippet:</i>
+								<input type="text" name="snippet" value="Luck is always with you!" title="First line of text that your email recipient will see"></label></div>
+						</div>
+						
+						<h3>Align<i class="icon">format_align_right</i></h3>
+						<div id="align">
+							<div id="textAlign"><i>Сontent:</i>
+								<label><input type="radio" name="textAlign" value="left"> left</label>
+								<label><input type="radio" name="textAlign" value="center"> center</label>
+								<label><input type="radio" name="textAlign" value="right"> right</label>
+							</div>
+							<div id="direction"><i>Direction:</i>
+								<label><input type="radio" name="direction" value="ltr"> left to right</label>
+								<label><input type="radio" name="direction" value="rtl"> right to left</label>
+							</div>
+						</div>
+						
+						<h3>Border<i class="icon">border_style</i></h3>
+						<div id="border">
+							
+						</div>
+						
+						<h3>Color<i class="icon">format_color_fill</i></h3>
+						<div id="colorPicker">
+							<div id="colorType">
+								<label title="The color property is used to set the color of the text">
+									<input type="radio" name="colorType" value="color" checked> Font</label>
+								<label title="The background-color property sets the background color of an element">
+									<input type="radio" name="colorType" value="background-color"> Background</label>
+								<label title="The border-color property sets the color of an element's border">
+									<input type="radio" name="colorType" value="border-color"> Border</label>
+							</div>
+							<div class="slider">
+								<div id="r"><i>127</i></div>
+								<div id="g"><i>127</i></div>
+								<div id="b"><i>127</i></div>
+							</div>
+							<div class="preview">
+								<label><input id="hex" type="color" name="color" value="#7f7f7f"></label>
+							</div>
+						</div>
+						
+						<h3>Font<i class="icon">font_download</i></h3>
+						<div id="font">
+							<div><label><i>Family:</i><input type="text" name="fontFamily"></label></div>
+							<div>
+								<label><input type="checkbox" name="fontWeight" value="bold"> Bold</label>
+								<label><input type="checkbox" name="fontStyle" value="italic"> Italic</label>
+							</div>
+							<div>
+								<label><input type="checkbox" name="textDecorationLine" value="underline"> Underline</label>
+								<label><input type="checkbox" name="textDecorationLine" value="line-through"> Strike</label>
+								<label><input type="checkbox" name="textDecorationLine" value="overline"> Overline</label>
+							</div>
+						</div>
+						
+						<h3>Hyperlink<i class="icon">link</i></h3>
+						<div id="hyperlink">
+							<div><label><i>Url:</i><input type="url" name="href"></label></div>
+							<div id="target"><i>Target:</i>
+								<label title="Opens the linked URL in a new window or tab">
+									<input type="radio" name="target" value="_blank"> _blank</label>
+								<label title="Opens the linked URL in the same frame as it was clicked">
+									<input type="radio" name="target" value="_self"> _self</label>
+							</div>
+						</div>
+						
+						<h3>Image<i class="icon">image</i></h3>
+						<div id="image">
+							<div><label><i>Src:</i>
+								<input type="url" name="src" title="Path to the image"></label></div>
+							<div><label><i>Alt:</i>
+								<input type="text" name="alt" title="Alternate text for an image, if the image cannot be displayed"></label></div>
+						</div>
+						
+						<h3>Padding<i class="icon">padding</i></h3>
+						<div id="padding">
+							<div>
+								<label><i>Top:   </i><input type="spinner" name="paddingTop"></label>
+								<label><i>Right: </i><input type="spinner" name="paddingRight"></label>
+							</div>
+							<div>
+								<label><i>Bottom:</i><input type="spinner" name="paddingBottom"></label>
+								<label><i>Left:  </i><input type="spinner" name="paddingLeft"></label>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<!--SOURCE-->
+				<div id="source">
+					<textarea></textarea>
+					<button id="update"><i class="icon">refresh</i> Update</button>
+				</div>
+				<!--OUTPUT-->
+				<div id="output">
+					<textarea></textarea>
+					<button id="copy"><i class="icon">copy_all</i>Copy</button>
+					<a id="validate" href="https://validator.w3.org/#validate_by_input" target="_blank" title="W3C">
+						<i class="icon">playlist_add_check</i> Check
+					</a>
+					<a id="test" href="https://email2go.io/home" target="_blank" title="email2go">
+						<i class="icon">preview</i> Test
+					</a>
+					<button id="save"><i class="icon">save</i> Save</button>
+				</div>
+				<!--HELP-->
+				<div id="help">
+					<div class="accordion">
+						<h3>About</h3>
+						<div class="section">
+							<p id="ver">E-mail generator: <var></var><br><br>
+								The application is under development, functionality and features are constantly being improved.<br><br>
+								The steps below will help you get to know the application and build the template.
+							</p>
+						</div>
+						<h3>1. Start to create template</h3>
+						<div class="section">
+							Very simple, just drag &amp; drop<br><br>
+							<div class="video"><iframe data-src="https://www.youtube.com/embed/L-7x-hWinf4" allowfullscreen></iframe></div>
+						</div>
+						<h3>2. Change image src &amp; alt</h3>
+						<div class="section">
+							Upload images to your server and change src<br><br>
+							<div class="video"><iframe data-src="https://www.youtube.com/embed/YAsau3tnuy4" allowfullscreen></iframe></div>
+						</div>
+						<h3>3. Set background color</h3>
+						<div class="section">
+							Select block and change color<br><br>
+							<div class="video"><iframe data-src="https://www.youtube.com/embed/4EMsKRpBXSQ" allowfullscreen></iframe></div>
+						</div>
+						<h3>4. Change padding</h3>
+						<div class="section">
+							Select block and change padding<br><br>
+							<div class="video"><iframe data-src="https://www.youtube.com/embed/8feqkdPfa94" allowfullscreen></iframe></div>
+						</div>
+						<h3>5. Internal editor / change content</h3>
+						<div class="section">
+							The internal editor is activated by double-click on the block<br><br>
+							<div class="video"><iframe data-src="https://www.youtube.com/embed/dXWg7lHQLFM" allowfullscreen></iframe></div>
+						</div>
+						<h3>6. Change HTML block code</h3>
+						<div class="section">
+							For developers possible to change the block code directly<br><br>
+							<div class="video"><iframe data-src="https://www.youtube.com/embed/nRljIdMo9Rs" allowfullscreen></iframe></div>
+						</div>
+						<h3>7. Email Template Output &amp; Testing Tool</h3>
+						<div class="section">
+							Recommended services are used to test the template, or use yours<br><br>
+							<div class="video"><iframe data-src="https://www.youtube.com/embed/_pt_A_LxL9Q" allowfullscreen></iframe></div>
+						</div>
+					</div>
+					<div id="notes">
+						<h3>Notes:</h3>
+						<p>
+							Some email clients render template look different from what you may have designed and tested.
+							Unfortunately, we can't do much about the way Outlook or other email clients display HTML email.
+						</p>
+						<p>
+							Web fonts only work in some email clients:<br>
+							<br>
+							– Apple / iOS Mail<br>
+							– Android (default mail client, not Gmail app)<br>
+							– Outlook 2000 / Outlook.com app<br>
+							– Thunderbird<br>
+						</p>
+						<p>Outlook has no support for border-radius, so your rounded corners will be straight.</p>
+						<p>In Outlooks lines appearing is caused by a bug rendering. What you see is actually the color set behind your content.</p>
+					</div>
+				</div>
+			</div><!-- END TOOLBOX-->
+			<div style="display: none; visibility: hidden;" id="helper">
+				<!-- extra object for intermediate actions -->
+				<input type="file" hidden="hidden" accept=".htm, .html">
+			</div>
+		</div><!-- END MAINBOX-->
+	</body>
+</html>

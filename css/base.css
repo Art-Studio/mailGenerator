@@ -1,0 +1,359 @@
+/* CSS Document */
+
+body{
+	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#mainBox{
+	overflow: hidden;
+	padding: 4px;
+	user-select: none;
+}
+
+/* COMMON */
+#toolsBox, #previewBox{
+	/*float: left;*/
+	padding: 5px;
+	margin: 5px;
+	visibility: hidden;
+}
+.ready #toolsBox, .ready #previewBox{
+	visibility: visible;
+}
+#toolsBox td > *,
+#previewBox td > *{
+	pointer-events: none;
+}
+
+i.icon{
+	font-family: 'Material Symbols Rounded';
+	font-style: normal;
+    font-size: 24px;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+	vertical-align: middle;
+	text-align: center;
+    display: inline-block;
+}
+
+/* PREVIEW */
+#previewBox{
+	/*
+	display: inline-block;
+    position: relative;
+    left: 50%;
+    transform: translate(-92%, 0);
+	*/
+	float: left;
+}
+#previewBox.init{
+	position: relative;
+}
+#previewBox button{
+	position: absolute;
+    top: 10px;
+    left: 10px;
+	display: none;
+}
+#previewBox.init button{
+	display: block;
+}
+#previewBox table,
+#toolsBox table{
+	table-layout: fixed;
+    border-collapse: collapse;
+    max-width: 600px;
+    width: 100%;
+    text-align: left;
+	line-height: 18px;
+}
+#previewBox tbody:after{
+	content: ' ';
+    /*width: 100%;*/
+    display: block;
+	box-sizing: border-box;
+	height: 100px;
+}
+#previewBox tbody:empty{
+	position: relative;
+}
+#previewBox tbody:empty:after{
+    background: #f5f5f5 url(../img/favicon.png) no-repeat center;
+    background-size: 10%;
+    border: 1px solid #c5c5c5;
+	height: 160px;
+	opacity: 0.9;
+    filter: grayscale(1);
+}
+#previewBox tbody:empty:before{
+	content: 'DRAG & DROP HERE';
+	position: absolute;
+	bottom: 20px;
+	width: 100%;
+	text-align: center;
+	z-index: 5;
+	color: #444444;
+}
+#previewBox tr:hover{
+	cursor: grab;
+	transform: scale(1.02);
+	filter: opacity(0.8) contrast(1.2);
+}
+#previewBox tr.active{
+	position: relative;
+}
+#previewBox tr.active:hover{
+	/*z-index: 50;*/
+}
+#previewBox tr.active td{
+	outline: none;
+}
+#previewBox tr.active td:first-child:after{
+	content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: 100%;
+    height: 100%;
+    border: 2px solid greenyellow;
+    outline: 2px solid #000000;
+	box-shadow: 0 0 16px #000000;
+	z-index: 10;
+	pointer-events: none;
+	padding: 2px;
+}
+#previewBox tr.remove td:first-child:after{
+	content: '✖';
+    font-size: 36px;
+    background: red;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 48px;
+    height: 48px;
+    text-align: center;
+    line-height: 44px;
+    color: #ffffff;
+    margin: -24px 0 0 -24px;
+    border: 2px solid #fff;
+    box-sizing: border-box;
+}
+
+/* TOOLBOX */
+#toolsBox{
+	position: fixed;
+    top: 10px;
+	width: 480px;
+	cursor: move;
+	z-index: 950;
+	left: 630px;
+	/*
+	left: 50%;
+	transform: translate(12%, 0);
+	*/
+}
+#toolsBox > * > *{
+	cursor: auto;
+}
+#toolsBox a, button{
+	cursor: pointer!important;
+}
+#toolsBox .ui-sortable-placeholder{
+	display: none;
+}
+#toolsBox table{
+	/*
+	width: 100%;
+	border-collapse: collapse;
+	*/
+}
+#toolsBox tr{
+	border: 1px solid #c5c5c5;
+}
+#toolsBox tr:last-child:not(.ui-sortable-helper){
+	border: 0;
+	pointer-events: none;
+	background: none;
+	visibility: hidden;
+}
+tr.ui-sortable-helper{
+	display: table;
+}
+
+/* ITEMS */
+#items,
+#help{
+	overflow: auto;
+    height: 500px;
+	margin-top: 10px;
+    border-top: 1px solid #c5c5c5;
+}
+#items tr:hover{
+	cursor: grab;
+	box-shadow: 0 0 5px #000000;
+	z-index: 5;
+    position: relative;
+}
+
+/* PROPERTIES BOX */
+#controls i.icon{
+	position: absolute;
+    right: 4px;
+    top: 4px;
+}
+#controls div i{
+	width: 80px;
+	display: inline-block;
+}
+#padding div i{
+	width: 65px;
+}
+#padding div label:not(:first-child){
+	margin-left: 20px;
+}
+#controls div > div:not(:first-of-type){
+	margin-top: 10px;
+}
+textarea,
+input[type=url],
+input[type=text]{
+	border: 1px solid #c5c5c5;
+    padding: 0.2em;
+    margin: 0.3em;
+    border-radius: 4px;
+	min-width: 260px;
+}
+input[type=spinner]{
+	width: 60px;
+}
+
+/* SOURCE */
+#source textarea,
+#output textarea{
+	width: 100%;
+	max-width: 100%;
+	min-width: 100%;
+	min-height: 230px;
+	margin: 0.3em 0 0.3em 0;
+}
+
+/* EDITOR */
+#previewBox tr.editor{
+	cursor: auto;
+    transform: none;
+    filter: none;
+}
+div.ui-tooltip b.divider{
+	font-size: 0;
+    display: inline-block;
+    border: 1px dashed #cccccc;
+    height: 26px;
+    vertical-align: middle;
+    border-style: dashed;
+	margin: 0 2px;
+}
+div.ui-tooltip i.icon{
+	width: 28px;
+	height: 28px;
+}
+div.ui-tooltip i.icon:hover{
+	cursor: pointer;
+	background: lightgrey;
+}
+i.icon[role=bold]{ line-height: 30px; font-size: 28px; }
+/*i.icon[role=fontColor]{ line-height: 30px; }*/
+
+#previewBox tr.editor td div{
+	pointer-events: auto;
+}
+#previewBox tr.editor .active{
+	animation: blinker 0.5s linear infinite;
+}
+@keyframes blinker {
+  50% { text-decoration: underline wavy;  }
+}
+
+/* COLOR PICKER */
+#colorPicker > div{
+	float: left;
+	margin: 0!important;
+}
+#colorPicker .slider{
+	width: 70%;
+    padding: 5px 10px;
+    box-sizing: border-box;
+}
+#colorPicker .slider div{
+	pointer-events: none;
+}
+#colorPicker .slider.hover span{
+	pointer-events: auto;
+}
+#colorPicker .slider i{
+	width: 30px;
+	position: relative;
+	left: -38px;
+	top: -4px;
+	text-align: right;
+	color: lightgrey;
+}
+#colorPicker .preview{
+	width: 30%;
+	overflow: hidden;
+}
+#colorPicker .preview label{
+	float: right;
+	width: 74px;
+	height: 66px;
+	margin: 2px;
+	background: #7f7f7f;
+	border: 1px dashed #cccccc;
+	position: relative;
+}
+#colorPicker .preview input{
+	width: 100%;
+	box-sizing: border-box;
+	text-align: center;
+	position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+#r .ui-slider-range { background: #ef2929; }
+#g .ui-slider-range { background: #8ae234; }
+#b .ui-slider-range { background: #729fcf; }
+
+#r:after{ content: 'R'; color: red; }
+#g:after{ content: 'G'; color: green; }
+#b:after{ content: 'B'; color: blue; }
+
+#r:after, #g:after, #b:after{
+	position: absolute;
+    right: -20px;
+    top: -3px;
+}
+
+#colorType{
+	padding: 0 10px 10px;
+}
+
+.video {
+	position: relative;
+	padding: 40%;
+	background: #222222;
+    border-radius: 6px;
+	border-top: 1px solid #222222;
+	border-bottom: 1px solid #222222;
+}
+.video *{
+	position: absolute;
+	width: 98%;
+	height: 98%;
+	top: 1%;
+    left: 1%;
+	border: 0;
+	background: url(../img/loader.gif) no-repeat center;
+    background-size: 10%;
+}
